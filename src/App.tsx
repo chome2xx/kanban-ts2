@@ -1,58 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import "./App.css";
+import { db } from "./firebase";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { viewAllTasks } from "./features/task/taskSlice";
+import React from "react";
+import { TypeTask } from "./interface/Types";
 
-function App() {
+const App: React.FC = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const unSub = db.collection("tasks").onSnapshot((snapshot) => {
+      const fireStore: TypeTask[] = [];
+      snapshot.docs.map((doc) =>
+        fireStore.push({
+          id: doc.id,
+          title: doc.data().title,
+          memo: doc.data().memo,
+          dueDate: doc.data().dueDate,
+          priority: doc.data().priority,
+          estimation: doc.data().estimation,
+          actualTime: doc.data().actualTime,
+          status: doc.data().status,
+          phase: doc.data().phase,
+          completed: doc.data().completed,
+        })
+      );
+      console.log(fireStore);
+      dispatch(viewAllTasks(fireStore));
+    });
+    return () => unSub();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+    <div>
+      <p>test</p>
     </div>
   );
-}
+};
 
 export default App;
