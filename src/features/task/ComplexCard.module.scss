@@ -1,0 +1,23 @@
+.root {
+  width: 300px;
+  margin-bottom: 10px;
+  position: relative;
+  .cardHeader {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .cardActions {
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .icon {
+    width: 10px;
+    height: 10px;
+    background-color: limegreen;
+    border-radius: 50%;
+    position: absolute;
+    top: 45px;
+    left: 45px;
+  }
+}

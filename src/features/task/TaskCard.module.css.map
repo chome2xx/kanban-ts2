@@ -1,1 +1,1 @@
-{"version":3,"sources":["TaskCard.module.scss","TaskCard.module.css"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,aAAA;EACA,yBAAA;ACCF;ADAE;EACE,uBAAA;EACA,WAAA;EACA,WAAA;EACA,sBAAA;ACEJ;ADAE;EACE,eAAA;ACEJ;ADAE;;EAEE,iBAAA;EACA,gBAAA;EACA,mBAAA;ACEJ","file":"TaskCard.module.css"}
+{"version":3,"sources":["TaskCard.module.scss","TaskCard.module.css"],"names":[],"mappings":"AAAA;EACE,YAAA;EACA,YAAA;EACA,yBAAA;ACCF;ADAE;EACE,uBAAA;EACA,WAAA;EACA,WAAA;EACA,sBAAA;ACEJ;ADAE;EACE,eAAA;ACEJ;ADAE;;EAEE,iBAAA;EACA,gBAAA;EACA,mBAAA;ACEJ","file":"TaskCard.module.css"}

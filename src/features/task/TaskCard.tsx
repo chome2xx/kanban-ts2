@@ -3,7 +3,7 @@ import Card from "@material-ui/core/Card";
 import Typography from "@material-ui/core/Typography";
 // import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import styles from "./TaskCard.module.scss";
+import styles from "./ComplexCard.module.scss";
 
 const TaskCard: React.FC = () => {
   return (
