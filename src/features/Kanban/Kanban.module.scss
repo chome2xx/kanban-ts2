@@ -1,13 +1,26 @@
-.kanban_root {
-  width: 100%;
-  height: calc(100vh - 100px);
-  margin: 0 auto;
+.kanban__root {
   background-color: #f6f7f9;
+  height: calc(100vh - 100px);
+  width: 100%;
+  height: calc(100vh - 120px);
+  margin: 0 auto;
+  padding: 5px;
+  display: flex;
+  justify-content: left;
+  .container {
+    flex-direction: row;
+    margin-right: 15px;
+    .progress_name {
+      border-bottom: #3b3b3b solid 2px;
+      padding: 0;
+      font-size: 1rem;
+      margin: 0px 0px 10px 10px;
+    }
+  }
   .create {
     width: 80px;
     height: 35px;
     margin: 10px;
-    // border-radius: 50px;
     background-color: #0063cc;
     border-color: #0063cc;
     &:hover {
@@ -15,5 +28,9 @@
       border-color: #0069d9;
       box-shadow: none;
     }
+  }
+  .taskCards {
+    height: calc(100vh - 150px);
+    overflow: scroll;
   }
 }

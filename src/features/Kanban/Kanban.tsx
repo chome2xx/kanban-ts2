@@ -1,13 +1,14 @@
 import React from "react";
 import styles from "./Kanban.module.scss";
-import Button from "@material-ui/core/Button";
+import TaskCardList from "../task/TaskCardList";
 
 const Kanban: React.FC = () => {
   return (
-    <div className={styles.kanban_root}>
-      <Button variant="contained" color="primary" className={styles.create}>
-        Create
-      </Button>
+    <div className={styles.kanban__root}>
+      <TaskCardList progress="Backlog" />
+      <TaskCardList progress="Scheduled" />
+      <TaskCardList progress="In Progress" />
+      <TaskCardList progress="Done" />
     </div>
   );
 };

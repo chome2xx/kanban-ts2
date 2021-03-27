@@ -1,0 +1,20 @@
+.taskCard__root {
+  width: 290px;
+  height: 100px;
+  margin: 0px 0px 10px 10px;
+  .green {
+    margin: 5px 0px 0px 5px;
+    height: 5px;
+    width: 20px;
+    background-color: lime;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .items th,
+  td {
+    font-size: 0.8rem;
+    text-align: left;
+    font-weight: normal;
+  }
+}

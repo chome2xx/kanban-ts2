@@ -1,0 +1,18 @@
+.container {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-right: 15px;
+}
+.container .progress_name {
+  border-bottom: #3b3b3b solid 2px;
+  padding: 0;
+  font-size: 1rem;
+  margin: 0px 0px 10px 10px;
+}
+.container .taskCards {
+  height: calc(100vh - 150px);
+  overflow: scroll;
+}
+/*# sourceMappingURL=TaskCardList.module.css.map */
