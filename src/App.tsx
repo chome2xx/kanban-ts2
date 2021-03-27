@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 import { viewAllTasks } from "./features/task/taskSlice";
 import React from "react";
 import { TypeTask } from "./interface/Types";
+import Header from "./features/Header/Header";
+import Footer from "./features/Footer/Footer";
+import Kanban from "./features/Kanban/Kanban";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -34,7 +37,9 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <p>test</p>
+      <Header />
+      <Kanban />
+      <Footer />
     </div>
   );
 };
