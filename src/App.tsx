@@ -33,7 +33,7 @@ const App: React.FC = () => {
           completed: doc.data().completed,
         })
       );
-      console.log(fireStore);
+      // console.log(fireStore);
       dispatch(viewAllTasks(fireStore));
     });
     return () => unSub();

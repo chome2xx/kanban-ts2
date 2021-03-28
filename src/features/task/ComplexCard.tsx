@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -10,29 +10,26 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "./ComplexCard.module.scss";
-import image from "../../media/3.jpeg";
+// import image from "../../media/3.jpeg";
 import EditIcon from "@material-ui/icons/Edit";
+import { TypeTask } from "../../interface/Types";
 
-export default function ComplexCard() {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
+const ComplexCard: React.FC<TypeTask> = (props) => {
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <Card className={styles.root}>
       <CardHeader
         className={styles.cardHeader}
-        // avatar={<Avatar />}
-        avatar={<Avatar src={image} />}
+        avatar={<Avatar />}
+        // avatar={<Avatar src={image} />}
         action={
           <IconButton aria-label="settings">
             <EditIcon fontSize="small" />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={props.title}
+        subheader={props.id}
       />
       <div className={styles.icon}></div>
       <CardActions disableSpacing className={styles.cardActions}>
@@ -41,7 +38,7 @@ export default function ComplexCard() {
           className={clsx(styles.expand, {
             [styles.expandOpen]: expanded,
           })}
-          onClick={handleExpandClick}
+          onClick={() => setExpanded(!expanded)}
           aria-expanded={expanded}
           aria-label="show more"
         >
@@ -55,12 +52,9 @@ export default function ComplexCard() {
             Heat 1/2 cup of the broth in a pot until simmering, add saffron and
             set aside for 10 minutes.
           </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then
-            serve.
-          </Typography>
         </CardContent>
       </Collapse>
     </Card>
   );
-}
+};
+export default ComplexCard;
