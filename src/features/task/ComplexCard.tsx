@@ -1,5 +1,4 @@
 import React from "react";
-import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -9,34 +8,12 @@ import Collapse from "@material-ui/core/Collapse";
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { deepPurple } from "@material-ui/core/colors";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import WbIncandescentIcon from "@material-ui/icons/WbIncandescent";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import styles from "./ComplexCard.module.scss";
-import { url } from "node:inspector";
 import image from "../../media/3.jpeg";
 import EditIcon from "@material-ui/icons/Edit";
-import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    expand: {
-      transform: "rotate(0deg)",
-      marginLeft: "auto",
-      transition: theme.transitions.create("transform", {
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-    expandOpen: {
-      transform: "rotate(180deg)",
-    },
-  })
-);
 
 export default function ComplexCard() {
-  const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -47,8 +24,8 @@ export default function ComplexCard() {
     <Card className={styles.root}>
       <CardHeader
         className={styles.cardHeader}
-        avatar={<Avatar />}
-        // avatar={<Avatar src={image} />}
+        // avatar={<Avatar />}
+        avatar={<Avatar src={image} />}
         action={
           <IconButton aria-label="settings">
             <EditIcon fontSize="small" />
@@ -59,9 +36,10 @@ export default function ComplexCard() {
       />
       <div className={styles.icon}></div>
       <CardActions disableSpacing className={styles.cardActions}>
+        {/* <p className={styles.tag}>Issue</p> */}
         <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
+          className={clsx(styles.expand, {
+            [styles.expandOpen]: expanded,
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}

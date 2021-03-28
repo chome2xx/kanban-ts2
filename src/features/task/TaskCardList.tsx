@@ -1,7 +1,6 @@
 import { Typography } from "@material-ui/core";
 import React from "react";
 import ComplexCard from "./ComplexCard";
-import TaskCard from "./TaskCard";
 import styles from "./TaskCardList.module.scss";
 
 interface PropType {
@@ -17,7 +16,6 @@ const TaskCardList: React.FC<PropType> = (props) => {
         </Typography>
       </div>
       <div className={styles.taskCards}>
-        {/* <TaskCard /> */}
         <ComplexCard />
       </div>
     </div>

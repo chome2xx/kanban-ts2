@@ -14,5 +14,4 @@ export interface TypeTask {
 export interface TypeState {
   tasks: TypeTask[];
   numberOfTasks: number;
-  isModalOpen: boolean;
 }

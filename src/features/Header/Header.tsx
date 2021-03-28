@@ -3,15 +3,24 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { useDispatch } from "react-redux";
+import { open } from "../Modal/modalSlice";
 
 const Header: React.FC = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.header__root}>
       <div className={styles.header__logo}>
         <h1>Kanban</h1>
       </div>
       <div>
-        <Button variant="contained" color="primary" className={styles.create}>
+        <Button
+          onClick={() => dispatch(open())}
+          variant="contained"
+          color="primary"
+          className={styles.create}
+        >
           Create
         </Button>
       </div>

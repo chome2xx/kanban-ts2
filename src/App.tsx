@@ -8,9 +8,14 @@ import { TypeTask } from "./interface/Types";
 import Header from "./features/Header/Header";
 import Footer from "./features/Footer/Footer";
 import Kanban from "./features/Kanban/Kanban";
+import Modal from "./features/Modal/Modal";
+import { selectModalState } from "./features/Modal/modalSlice";
+import { useSelector } from "react-redux";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+  const isModalOpen = useSelector(selectModalState);
+
   useEffect(() => {
     const unSub = db.collection("tasks").onSnapshot((snapshot) => {
       const fireStore: TypeTask[] = [];
@@ -38,6 +43,7 @@ const App: React.FC = () => {
   return (
     <div>
       <Header />
+      {isModalOpen && <Modal />}
       <Kanban />
       <Footer />
     </div>

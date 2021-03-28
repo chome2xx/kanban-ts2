@@ -5,7 +5,6 @@ import { TypeState } from "../../interface/Types";
 const initialState: TypeState = {
   tasks: [],
   numberOfTasks: 0,
-  isModalOpen: false,
 };
 
 export const taskSlice = createSlice({
