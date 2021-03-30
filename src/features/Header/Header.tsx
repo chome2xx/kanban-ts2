@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useDispatch } from "react-redux";
 import { open } from "../Modal/modalSlice";
+import { setSearchTitle } from "../Header/searchSlice";
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const Header: React.FC = () => {
           type="search"
           variant="outlined"
           size="small"
+          onChange={(e) => dispatch(setSearchTitle(e.target.value))}
         />
       </div>
       <div className={styles.header__credential}>

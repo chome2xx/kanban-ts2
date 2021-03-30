@@ -3,13 +3,49 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px;
-  height: 500px;
+  width: 320px;
+  height: 550px;
   background-color: #ffffff;
   border-radius: 5px;
   z-index: 11;
-  padding: 2rem;
+  padding: 2rem 1.2rem 2rem 2rem;
   overflow-y: scroll;
+  h1 {
+    font-size: 1.6rem;
+    text-align: center;
+    font-weight: normal;
+    margin: 0;
+  }
+  .mode {
+    text-align: center;
+  }
+  .label {
+    font-size: 12px;
+  }
+  .longField {
+    margin-bottom: 20px;
+    width: 310px;
+  }
+
+  .harfField {
+    width: 150px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+
+  .radioGroup {
+    justify-content: space-between;
+  }
+
+  .buttonGroup {
+    display: flex;
+    justify-content: space-around;
+    // margin-top: 20px;
+    padding: 20px 40px;
+  }
+  .button {
+    width: 90px;
+  }
 }
 #modal__overlay {
   position: fixed;

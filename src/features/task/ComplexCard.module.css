@@ -12,14 +12,41 @@
   padding-top: 0;
   padding-bottom: 0;
 }
-.root .icon {
+.root .status_green {
   width: 8px;
   height: 8px;
-  background-color: limegreen;
   border-radius: 50%;
   position: absolute;
   top: 45px;
   left: 45px;
+  background-color: limegreen;
+}
+.root .status_orange {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  background-color: orange;
+}
+.root .status_red {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  background-color: red;
+}
+.root .status_white {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: 45px;
+  left: 45px;
+  background-color: white;
 }
 .root .tag {
   color: #ffffff;

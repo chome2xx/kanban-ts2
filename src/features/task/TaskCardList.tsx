@@ -3,6 +3,7 @@ import React from "react";
 import ComplexCard from "./ComplexCard";
 import styles from "./TaskCardList.module.scss";
 import { selectTask } from "./taskSlice";
+import { selectSearchTitle } from "../Header/searchSlice";
 import { useSelector } from "react-redux";
 
 interface PropType {
@@ -11,10 +12,13 @@ interface PropType {
 
 const TaskCardList: React.FC<PropType> = (props) => {
   const tasks = useSelector(selectTask);
+  const searchTitle = useSelector(selectSearchTitle);
 
   // Filter data by phase
   const filteredtasks = tasks.filter((task) => {
-    return task.phase === props.progress;
+    return (
+      task.phase === props.progress && task.title.indexOf(searchTitle) > -1
+    );
   });
 
   return (

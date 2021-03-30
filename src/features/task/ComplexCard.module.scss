@@ -1,3 +1,12 @@
+@mixin status {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: 45px;
+  left: 45px;
+}
+
 .root {
   width: 300px;
   margin-bottom: 10px;
@@ -11,14 +20,24 @@
     padding-top: 0;
     padding-bottom: 0;
   }
-  .icon {
-    width: 8px;
-    height: 8px;
+  .status_green {
+    @include status;
     background-color: limegreen;
-    border-radius: 50%;
-    position: absolute;
-    top: 45px;
-    left: 45px;
+  }
+
+  .status_orange {
+    @include status;
+    background-color: orange;
+  }
+
+  .status_red {
+    @include status;
+    background-color: red;
+  }
+
+  .status_white {
+    @include status;
+    background-color: white;
   }
   .tag {
     color: #ffffff;

@@ -10,28 +10,42 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "./ComplexCard.module.scss";
-// import image from "../../media/3.jpeg";
+// import img from "../../media/3.jpeg";
 import EditIcon from "@material-ui/icons/Edit";
 import { TypeTask } from "../../interface/Types";
 
 const ComplexCard: React.FC<TypeTask> = (props) => {
   const [expanded, setExpanded] = useState(false);
 
+  const status = (status_color: string) => {
+    switch (status_color) {
+      case "red":
+        return styles.status_red;
+      case "green":
+        return styles.status_green;
+      case "orange":
+        return styles.status_orange;
+      default:
+        break;
+    }
+  };
+  // const status: string = styles.status_orange;
+
   return (
     <Card className={styles.root}>
       <CardHeader
         className={styles.cardHeader}
         avatar={<Avatar />}
-        // avatar={<Avatar src={image} />}
+        // avatar={<Avatar src={img} />}
         action={
           <IconButton aria-label="settings">
             <EditIcon fontSize="small" />
           </IconButton>
         }
         title={props.title}
-        subheader={props.id}
+        subheader="Update: 29 Sep 2021 10:00"
       />
-      <div className={styles.icon}></div>
+      <div className={status(props.status)}></div>
       <CardActions disableSpacing className={styles.cardActions}>
         {/* <p className={styles.tag}>Issue</p> */}
         <IconButton
@@ -47,10 +61,23 @@ const ComplexCard: React.FC<TypeTask> = (props) => {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
+          <Typography paragraph variant="h5">
+            Information
+          </Typography>
+          <Typography paragraph variant="body2">
+            Due date : {props.dueDate}
+          </Typography>
+          <Typography paragraph variant="body2">
+            Estimation : {props.estimation}
+          </Typography>
+          <Typography paragraph variant="body2">
+            Actual Time : {props.actualTime}
+          </Typography>
+          <Typography paragraph variant="body2">
+            Priority : {props.priority}
+          </Typography>
+          <Typography paragraph variant="body2">
+            {props.memo}
           </Typography>
         </CardContent>
       </Collapse>

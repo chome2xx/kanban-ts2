@@ -1,2 +1,2 @@
-.footer__root{width:100%;height:50px;margin-top:auto}.footer__copyright{height:100%;display:block;background-color:#fff;border-top:#d6d4d4 solid 1px;text-align:center;color:#3b3b3b;padding-top:20px;font-size:12px;margin:0}
+.footer__root{width:calc(100% + 10px);height:50px;margin-top:auto}.footer__copyright{height:100%;display:block;background-color:#fff;border-top:#d6d4d4 solid 1px;text-align:center;color:#3b3b3b;padding-top:20px;font-size:12px;margin:0}
 /*# sourceMappingURL=Footer.module.min.css.map */
