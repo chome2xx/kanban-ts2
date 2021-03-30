@@ -1,17 +1,21 @@
 export interface TypeTask {
-  id: string;
   title: string;
   memo: string;
   dueDate: string;
   priority: string;
   estimation: number;
   actualTime: number;
-  status: string;
   phase: string;
   completed: boolean;
+  update: string;
+}
+
+export interface TypeDocument {
+  id: string;
+  task: TypeTask;
 }
 
 export interface TypeState {
-  tasks: TypeTask[];
+  documents: TypeDocument[];
   numberOfTasks: number;
 }

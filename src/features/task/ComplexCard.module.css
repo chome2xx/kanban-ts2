@@ -46,6 +46,15 @@
   position: absolute;
   top: 45px;
   left: 45px;
+  background-color: #ffffff;
+}
+.root .status_white {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: absolute;
+  top: 45px;
+  left: 45px;
   background-color: white;
 }
 .root .tag {
@@ -64,5 +73,15 @@
 .root .expandOpen {
   -webkit-transform: rotate(180deg);
           transform: rotate(180deg);
+}
+.root .deleteIcon {
+  color: #525252;
+  margin-left: 90%;
+}
+.root .deleteIcon:hover {
+  cursor: pointer;
+}
+.root .editIcon {
+  color: #525252;
 }
 /*# sourceMappingURL=ComplexCard.module.css.map */

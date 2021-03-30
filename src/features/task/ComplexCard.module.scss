@@ -34,6 +34,10 @@
     @include status;
     background-color: red;
   }
+  .status_white {
+    @include status;
+    background-color: #ffffff;
+  }
 
   .status_white {
     @include status;
@@ -54,5 +58,16 @@
 
   .expandOpen {
     transform: rotate(180deg);
+  }
+
+  .deleteIcon {
+    color: #525252;
+    margin-left: 90%;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .editIcon {
+    color: #525252;
   }
 }

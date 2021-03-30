@@ -15,9 +15,10 @@ const TaskCardList: React.FC<PropType> = (props) => {
   const searchTitle = useSelector(selectSearchTitle);
 
   // Filter data by phase
-  const filteredtasks = tasks.filter((task) => {
+  const filteredtasks = tasks.filter((doc) => {
     return (
-      task.phase === props.progress && task.title.indexOf(searchTitle) > -1
+      doc.task.phase === props.progress &&
+      doc.task.title.indexOf(searchTitle) > -1
     );
   });
 
@@ -29,22 +30,8 @@ const TaskCardList: React.FC<PropType> = (props) => {
         </Typography>
       </div>
       <div className={styles.taskCards}>
-        {filteredtasks.map((task) => {
-          return (
-            <ComplexCard
-              key={task.id}
-              id={task.id}
-              title={task.title}
-              dueDate={task.dueDate}
-              priority={task.priority}
-              estimation={task.estimation}
-              actualTime={task.actualTime}
-              memo={task.memo}
-              status={task.status}
-              phase={task.phase}
-              completed={task.completed}
-            />
-          );
+        {filteredtasks.map((doc) => {
+          return <ComplexCard key={doc.id} id={doc.id} task={doc.task} />;
         })}
       </div>
     </div>

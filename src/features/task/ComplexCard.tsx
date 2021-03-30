@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import { db } from "../../firebase";
+import { useDispatch } from "react-redux";
+import { edit } from "../Modal/modalSlice";
+
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -12,24 +16,41 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "./ComplexCard.module.scss";
 // import img from "../../media/3.jpeg";
 import EditIcon from "@material-ui/icons/Edit";
-import { TypeTask } from "../../interface/Types";
+import { TypeDocument } from "../../interface/Types";
+import DeleteIcon from "@material-ui/icons/Delete";
 
-const ComplexCard: React.FC<TypeTask> = (props) => {
+const ComplexCard: React.FC<TypeDocument> = (doc) => {
   const [expanded, setExpanded] = useState(false);
+  const dispatch = useDispatch();
 
-  const status = (status_color: string) => {
-    switch (status_color) {
-      case "red":
-        return styles.status_red;
-      case "green":
-        return styles.status_green;
-      case "orange":
-        return styles.status_orange;
-      default:
-        break;
+  const deleteTask = () => {
+    db.collection("tasks").doc(doc.id).delete();
+  };
+
+  const setStatus = (): string => {
+    const today = formatDate(new Date());
+    const dueDate = formatDate(new Date(doc.task.dueDate));
+    if (doc.task.phase === "Done") {
+      return "";
+    } else if (doc.task.dueDate === "") {
+      return styles.status_white;
+    } else if (dueDate > today) {
+      return styles.status_green;
+    } else if (dueDate === today) {
+      return styles.status_orange;
+    } else {
+      return styles.status_red;
     }
   };
-  // const status: string = styles.status_orange;
+
+  const formatDate = (date: Date): string => {
+    let formatDate: string;
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+    formatDate = year + ("0" + month).slice(-2) + ("0" + day).slice(-2);
+    return formatDate;
+  };
 
   return (
     <Card className={styles.root}>
@@ -38,14 +59,14 @@ const ComplexCard: React.FC<TypeTask> = (props) => {
         avatar={<Avatar />}
         // avatar={<Avatar src={img} />}
         action={
-          <IconButton aria-label="settings">
-            <EditIcon fontSize="small" />
+          <IconButton onClick={() => dispatch(edit(doc))} aria-label="settings">
+            <EditIcon className={styles.editIcon} fontSize="small" />
           </IconButton>
         }
-        title={props.title}
-        subheader="Update: 29 Sep 2021 10:00"
+        title={doc.task.title}
+        subheader={doc.task.update}
       />
-      <div className={status(props.status)}></div>
+      <div className={setStatus()}></div>
       <CardActions disableSpacing className={styles.cardActions}>
         {/* <p className={styles.tag}>Issue</p> */}
         <IconButton
@@ -65,20 +86,21 @@ const ComplexCard: React.FC<TypeTask> = (props) => {
             Information
           </Typography>
           <Typography paragraph variant="body2">
-            Due date : {props.dueDate}
+            Due date : {doc.task.dueDate}
           </Typography>
           <Typography paragraph variant="body2">
-            Estimation : {props.estimation}
+            Estimation : {doc.task.estimation}
           </Typography>
           <Typography paragraph variant="body2">
-            Actual Time : {props.actualTime}
+            Actual Time : {doc.task.actualTime}
           </Typography>
           <Typography paragraph variant="body2">
-            Priority : {props.priority}
+            Priority : {doc.task.priority}
           </Typography>
           <Typography paragraph variant="body2">
-            {props.memo}
+            {doc.task.memo}
           </Typography>
+          <DeleteIcon onClick={deleteTask} className={styles.deleteIcon} />
         </CardContent>
       </Collapse>
     </Card>

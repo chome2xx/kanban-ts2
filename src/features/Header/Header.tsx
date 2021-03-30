@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useDispatch } from "react-redux";
-import { open } from "../Modal/modalSlice";
+import { create } from "../Modal/modalSlice";
 import { setSearchTitle } from "../Header/searchSlice";
 
 const Header: React.FC = () => {
@@ -17,7 +17,7 @@ const Header: React.FC = () => {
       </div>
       <div>
         <Button
-          onClick={() => dispatch(open())}
+          onClick={() => dispatch(create(""))}
           variant="contained"
           color="primary"
           className={styles.create}

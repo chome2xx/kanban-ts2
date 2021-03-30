@@ -3,7 +3,7 @@ import { RootState } from "../../app/store";
 import { TypeState } from "../../interface/Types";
 
 const initialState: TypeState = {
-  tasks: [],
+  documents: [],
   numberOfTasks: 0,
 };
 
@@ -12,13 +12,13 @@ export const taskSlice = createSlice({
   initialState,
   reducers: {
     viewAllTasks: (state, action) => {
-      state.tasks = action.payload;
-      state.numberOfTasks = state.tasks.length;
+      state.documents = action.payload;
+      state.numberOfTasks = state.documents.length;
     },
   },
 });
 
 export const { viewAllTasks } = taskSlice.actions;
-export const selectTask = (state: RootState) => state.task.tasks;
+export const selectTask = (state: RootState) => state.task.documents;
 
 export default taskSlice.reducer;
