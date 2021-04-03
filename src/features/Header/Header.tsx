@@ -6,9 +6,21 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useDispatch } from "react-redux";
 import { create } from "../Modal/modalSlice";
 import { setSearchTitle } from "../Header/searchSlice";
+import { auth } from "../../firebase";
+import { withRouter } from "react-router";
+// import img from "../../media/IMG_0760.jpg";
 
-const Header: React.FC = () => {
+const Header: React.FC = (props: any) => {
   const dispatch = useDispatch();
+
+  // const logout = async () => {
+  //   try {
+  //     await auth.signOut();
+  //     props.history.push("login");
+  //   } catch (error) {
+  //     alert(error.message);
+  //   }
+  // };
 
   return (
     <div className={styles.header__root}>
@@ -37,10 +49,26 @@ const Header: React.FC = () => {
         />
       </div>
       <div className={styles.header__credential}>
-        <ExitToAppIcon className={styles.header__logout} />
+        {/* <img src={img} className={styles.icon} alt="" /> */}
+        <ExitToAppIcon
+          onClick={() => {
+            auth
+              .signOut()
+              .then(function (firebaseUser) {
+                props.history.push("login");
+                console.log("Signed out");
+              })
+              .catch(function (error) {
+                console.log(error.message);
+              });
+          }}
+          className={styles.header__logout}
+        />
       </div>
     </div>
   );
 };
 
-export default Header;
+export default withRouter(Header);
+
+// export default Header;

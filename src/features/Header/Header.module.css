@@ -41,5 +41,13 @@
 
 .header__credential .header__logout {
   margin: 15px 10px 0px 0px;
+  cursor: pointer;
+}
+
+.icon {
+  width: 8%;
+  margin-top: 5px;
+  margin-left: 90%;
+  border-radius: 50%;
 }
 /*# sourceMappingURL=Header.module.css.map */

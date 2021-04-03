@@ -14,7 +14,7 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "./ComplexCard.module.scss";
-// import img from "../../media/3.jpeg";
+// import img from "../../media/IMG_0760.jpg";
 import EditIcon from "@material-ui/icons/Edit";
 import { TypeDocument } from "../../interface/Types";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -44,11 +44,12 @@ const ComplexCard: React.FC<TypeDocument> = (doc) => {
   };
 
   const formatDate = (date: Date): string => {
-    let formatDate: string;
-    var year = date.getFullYear();
-    var month = date.getMonth() + 1;
-    var day = date.getDate();
-    formatDate = year + ("0" + month).slice(-2) + ("0" + day).slice(-2);
+    // let formatDate: string;
+    const year: number = date.getFullYear();
+    const month: number = date.getMonth() + 1;
+    const day: number = date.getDate();
+    const formatDate: string =
+      year + ("0" + month).slice(-2) + ("0" + day).slice(-2);
     return formatDate;
   };
 

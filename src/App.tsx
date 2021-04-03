@@ -11,10 +11,18 @@ import Kanban from "./features/Kanban/Kanban";
 import Modal from "./features/Modal/Modal";
 import { selectModalState } from "./features/Modal/modalSlice";
 import { useSelector } from "react-redux";
+import { auth } from "./firebase";
 
-const App: React.FC = () => {
+const App: React.FC = (props: any) => {
   const dispatch = useDispatch();
   const modalState = useSelector(selectModalState);
+
+  useEffect(() => {
+    const unSub = auth.onAuthStateChanged((user) => {
+      !user && props.history.push("/login");
+    });
+    return () => unSub();
+  });
 
   useEffect(() => {
     const unSub = db.collection("tasks").onSnapshot((snapshot) => {

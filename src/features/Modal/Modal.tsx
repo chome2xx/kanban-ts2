@@ -51,36 +51,35 @@ const Modal: React.FC = () => {
 
   // Post new document to cloud firestore
   const onSubmit = (data: FormFields) => {
-    const today: string = new Date().getFullYear().toString();
-    console.log(today);
-    if (modalState.mode === "create") {
-      let newTask: TypeTask;
-      newTask = {
-        title: data.title,
-        memo: data.memo,
-        estimation: data.estimation,
-        actualTime: data.actualTime,
-        dueDate: data.dueDate,
-        completed: data.completed,
-        priority: data.priority,
-        phase: "Backlog",
-        update: today,
-      };
-      db.collection("tasks").add(newTask);
+    const today: string = new Date().toString().substr(0, 25);
+    let phase: string;
+    if (data.completed) {
+      phase = "Done";
+    } else if (data.actualTime > 0) {
+      phase = "In Progress";
+    } else if (data.dueDate !== "") {
+      phase = "Scheduled";
     } else {
-      let edit: TypeTask;
-      edit = {
-        title: data.title,
-        memo: data.memo,
-        estimation: data.estimation,
-        actualTime: data.actualTime,
-        dueDate: data.dueDate,
-        completed: data.completed,
-        priority: data.priority,
-        phase: modalState.document.task.phase,
-        update: today,
-      };
-      db.collection("tasks").doc(modalState.document.id).set(edit);
+      phase = "Backlog";
+    }
+
+    let task: TypeTask;
+    task = {
+      title: data.title,
+      memo: data.memo,
+      estimation: data.estimation,
+      actualTime: data.actualTime,
+      dueDate: data.dueDate,
+      completed: data.completed,
+      priority: data.priority,
+      phase: phase,
+      update: today,
+    };
+
+    if (modalState.mode === "create") {
+      db.collection("tasks").add(task);
+    } else {
+      db.collection("tasks").doc(modalState.document.id).set(task);
     }
     dispatch(close());
   };
@@ -114,7 +113,7 @@ const Modal: React.FC = () => {
             id="estimation"
             label="Estimation"
             name="estimation"
-            type="decimal"
+            type="number"
             className={styles.harfField}
             InputLabelProps={{
               shrink: true,
@@ -127,7 +126,7 @@ const Modal: React.FC = () => {
             name="actualTime"
             id="Actual"
             label="Actual"
-            type="decimal"
+            type="number"
             className={styles.harfField}
             InputLabelProps={{
               shrink: true,

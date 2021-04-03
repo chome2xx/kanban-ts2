@@ -1,0 +1,18 @@
+.login__root {
+  text-align: center;
+  input {
+    width: 200px;
+  }
+  label {
+    width: 85px;
+    display: inline-block;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .login__error {
+    color: red;
+  }
+  .login__submit {
+    width: 60px;
+  }
+}
