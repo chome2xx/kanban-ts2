@@ -5,7 +5,7 @@ import { selectModalState } from "../Modal/modalSlice";
 import { close } from "../Modal/modalSlice";
 import { TypeTask } from "../../interface/Types";
 // Firestore module
-import { db } from "../../firebase";
+import { db, auth } from "../../firebase";
 // CSS module
 import styles from "./Modal.module.scss";
 // Material UI componets
@@ -36,6 +36,8 @@ const Modal: React.FC = () => {
   const { register, handleSubmit, errors } = useForm();
   const modalState = useSelector(selectModalState);
   const [completed, setCompleted] = useState(false);
+  const project_id = "test";
+  const uid = auth.currentUser?.uid;
 
   // Set default value to completed field
   useEffect(() => {
@@ -67,6 +69,7 @@ const Modal: React.FC = () => {
     task = {
       title: data.title,
       memo: data.memo,
+      uid: uid,
       estimation: data.estimation,
       actualTime: data.actualTime,
       dueDate: data.dueDate,
@@ -77,9 +80,13 @@ const Modal: React.FC = () => {
     };
 
     if (modalState.mode === "create") {
-      db.collection("tasks").add(task);
+      db.collection("project").doc(project_id).collection("tasks").add(task);
     } else {
-      db.collection("tasks").doc(modalState.document.id).set(task);
+      db.collection("project")
+        .doc(project_id)
+        .collection("tasks")
+        .doc(modalState.document.id)
+        .set(task);
     }
     dispatch(close());
   };

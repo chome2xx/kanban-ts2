@@ -8,6 +8,7 @@ export interface TypeTask {
   phase: string;
   completed: boolean;
   update: string;
+  uid: string | undefined;
 }
 
 export interface TypeDocument {

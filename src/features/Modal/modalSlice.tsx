@@ -25,6 +25,7 @@ const initialState: TypeState = {
       phase: "",
       completed: false,
       update: today,
+      uid: "",
     },
   },
 };

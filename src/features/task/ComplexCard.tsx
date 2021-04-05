@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { db } from "../../firebase";
+import React, { useState, useEffect } from "react";
+import { db, storage } from "../../firebase";
 import { useDispatch } from "react-redux";
 import { edit } from "../Modal/modalSlice";
 
@@ -14,7 +14,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import styles from "./ComplexCard.module.scss";
-// import img from "../../media/IMG_0760.jpg";
 import EditIcon from "@material-ui/icons/Edit";
 import { TypeDocument } from "../../interface/Types";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -22,9 +21,25 @@ import DeleteIcon from "@material-ui/icons/Delete";
 const ComplexCard: React.FC<TypeDocument> = (doc) => {
   const [expanded, setExpanded] = useState(false);
   const dispatch = useDispatch();
+  const project_id = "test";
+  const ref = storage.ref().child("images/3.jpeg");
+
+  const [url, setUrl] = useState("");
+
+  useEffect(() => {
+    ref.getDownloadURL().then(function (url) {
+      setUrl(url);
+      console.log(url);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const deleteTask = () => {
-    db.collection("tasks").doc(doc.id).delete();
+    db.collection("project")
+      .doc(project_id)
+      .collection("tasks")
+      .doc(doc.id)
+      .delete();
   };
 
   const setStatus = (): string => {
@@ -57,8 +72,8 @@ const ComplexCard: React.FC<TypeDocument> = (doc) => {
     <Card className={styles.root}>
       <CardHeader
         className={styles.cardHeader}
-        avatar={<Avatar />}
-        // avatar={<Avatar src={img} />}
+        // avatar={<Avatar />}
+        avatar={<Avatar src={url} />}
         action={
           <IconButton onClick={() => dispatch(edit(doc))} aria-label="settings">
             <EditIcon className={styles.editIcon} fontSize="small" />
