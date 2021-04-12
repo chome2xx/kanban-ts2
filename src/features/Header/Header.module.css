@@ -44,6 +44,10 @@
   cursor: pointer;
 }
 
+.project {
+  width: 120px;
+}
+
 .icon {
   width: 8%;
   margin-top: 5px;

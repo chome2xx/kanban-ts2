@@ -1,13 +1,13 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import React from "react";
-import Header from "./features/Header/Header";
-import Footer from "./features/Footer/Footer";
 import Kanban from "./features/Kanban/Kanban";
 import Modal from "./features/Modal/Modal";
 import { selectModalState } from "./features/Modal/modalSlice";
 import { useSelector } from "react-redux";
 import { auth } from "./firebase";
+import Header from "./features/Header/Header";
+import Footer from "./features/Footer/Footer";
 
 const App: React.FC = (props: any) => {
   const modalState = useSelector(selectModalState);
@@ -28,8 +28,8 @@ const App: React.FC = (props: any) => {
     return (
       <div>
         <Header />
-        {modalState.isModalOpen && <Modal />}
         <Kanban />
+        {modalState.isModalOpen && <Modal />}
         <Footer />
       </div>
     );

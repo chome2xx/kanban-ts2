@@ -6,21 +6,20 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { useDispatch } from "react-redux";
 import { create } from "../Modal/modalSlice";
 import { setSearchTitle } from "../Header/searchSlice";
+import { setProject } from "../Header/projectSlice";
+import { useSelector } from "react-redux";
+import { selectProject } from "../Header/projectSlice";
 import { auth } from "../../firebase";
 import { withRouter } from "react-router";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
 // import img from "../../media/IMG_0760.jpg";
 
 const Header: React.FC = (props: any) => {
   const dispatch = useDispatch();
-
-  // const logout = async () => {
-  //   try {
-  //     await auth.signOut();
-  //     props.history.push("login");
-  //   } catch (error) {
-  //     alert(error.message);
-  //   }
-  // };
+  const projectState = useSelector(selectProject);
 
   return (
     <div className={styles.header__root}>
@@ -47,6 +46,22 @@ const Header: React.FC = (props: any) => {
           size="small"
           onChange={(e) => dispatch(setSearchTitle(e.target.value))}
         />
+      </div>
+      <div>
+        <FormControl className={styles.project}>
+          <InputLabel id="demo-simple-select-label">Project</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={projectState.name}
+            onChange={(e) => {
+              dispatch(setProject(e.target.value as string));
+            }}
+          >
+            <MenuItem value={"Test"}>Test</MenuItem>
+            <MenuItem value={"Production"}>Production</MenuItem>
+          </Select>
+        </FormControl>
       </div>
       <div className={styles.header__credential}>
         {/* <img src={img} className={styles.icon} alt="" /> */}

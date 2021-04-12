@@ -72,8 +72,8 @@ const ComplexCard: React.FC<TypeDocument> = (doc) => {
     <Card className={styles.root}>
       <CardHeader
         className={styles.cardHeader}
-        // avatar={<Avatar />}
-        avatar={<Avatar src={url} />}
+        avatar={<Avatar />}
+        // avatar={<Avatar src={url} />}
         action={
           <IconButton onClick={() => dispatch(edit(doc))} aria-label="settings">
             <EditIcon className={styles.editIcon} fontSize="small" />
