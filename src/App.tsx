@@ -24,6 +24,7 @@ const App: React.FC = (props: any) => {
     return () => unSub();
   });
 
+  // If user login this app, display kanban view.
   if (isLoggedin) {
     return (
       <div>
